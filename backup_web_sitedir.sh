@@ -33,7 +33,7 @@ then
 fi
 
 #create log
-echo "--------------------" >> $LOGFILE
+echo "--------------------" > $LOGFILE
 echo "BACKUP DATE:" $BACKUP_DATE >> $LOGFILE
 
 #cd backup dir

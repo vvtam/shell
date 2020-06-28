@@ -27,7 +27,7 @@ then
 fi
 
 #写日志
-echo "    " >> $LOGFILE
+echo "    " > $LOGFILE
 echo "--------------------" >> $LOGFILE
 echo "BACKUP DATE:" $(date +"%y-%m-%d %H:%M:%S") >> $LOGFILE
 echo "-------------------" >> $LOGFILE
