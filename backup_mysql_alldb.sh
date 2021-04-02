@@ -2,8 +2,6 @@
 
 #------------------------------------------
 # description:  MySQL backup shell script
-# author:       tam
-# update： 2020/09/3
 #------------------------------------------
 
 USER="root"
@@ -19,8 +17,8 @@ OPTIONS="-h$DBHOST -u$USER -p$PASSWORD"
 # OPTIONS="-h$DBHOST -u$USER -p$PASSWORD --set-gtid-purged=OFF $DATABASE"
 
 #备份目录是否存在，否则创建该目录
-if [ ! -d $BACKUP_DIR ]; then
-    mkdir -p "$BACKUP_DIR"
+if [ ! -d ${BACKUP_DIR} ]; then
+    mkdir -p "${BACKUP_DIR}"
 fi
 
 #写日志
@@ -29,7 +27,7 @@ echo "BACKUP DATE:" $(date +"%y-%m-%d %H:%M:%S") >>$LOGFILE
 echo "-------------------" >>$LOGFILE
 
 #切换至备份目录
-cd $BACKUP_DIR
+cd ${BACKUP_DIR}
 for i in ${DATABASE}; do
     /usr/local/mysql/bin/mysqldump $OPTIONS $i >${i}-${DATE}.sql
     #判断数据库备份是否成功
@@ -47,4 +45,4 @@ for i in ${DATABASE}; do
 done
 echo "Backup Process Done"
 #删除5天以上的备份文件
-find $BACKUP_DIR -type f -mtime +5 -name "*.tar.gz" -exec rm -f {} \;
+find ${BACKUP_DIR} -type f -mtime +5 -name "*.tar.gz" -exec rm -f {} \;
